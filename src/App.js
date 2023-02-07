@@ -17,18 +17,16 @@ function App() {
   const [category, setCategory] = useState('en');
   const [lightMode, setLightMode] = useState(false)
   
-  //FETCH DATA 
-  const dictionaryApi = async () => {
-    try {
-      const data = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`);
-
-      setMeanings(data.data)
-    } catch (error){
-        console.log(error)
-    }
-  }
-
   useEffect(() => {
+    const dictionaryApi = async () => {
+      try {
+        const data = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`);
+  
+        setMeanings(data.data)
+      } catch (error){
+          console.log(error)
+      }
+    }
     dictionaryApi();
   }, [word,category])
 
